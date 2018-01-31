@@ -12,7 +12,9 @@ class SWViewController: UIViewController {
 
     var startTime = TimeInterval();
     var timer = Timer()
-    var rate = 18.5
+    var rate = 19.0
+    var running = false;
+    var bgTimeStamp = Date()
     static let zero = "00:00:00:00"
     
     @IBOutlet var displayTimeLabel: UILabel!
@@ -24,10 +26,16 @@ class SWViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var setButton: UIButton!
     
+    /**
+     Sets rate value that is being used to calculate money earned
+    */
     @IBAction func setRate(sender: AnyObject){
+        // the pop-up dialog box
         let alert = UIAlertController(title: "Set a rate", message: "What do you want the new rate to be?", preferredStyle: .alert)
+        // the textbox for new rate value
         alert.addTextField { (textField) in
             //textField.text = "default text"
+            textField.text = String(self.rate)
             textField.keyboardType = UIKeyboardType.decimalPad
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -64,19 +72,25 @@ class SWViewController: UIViewController {
     @IBAction func start(sender: AnyObject){
         
         if !timer.isValid{
+            print("starting the timer")
             let aSelector : Selector = #selector(SWViewController.updateTime)
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
             startTime = NSDate.timeIntervalSinceReferenceDate
+            // toggles running flag
+            running = !running
         }
         
     }
     
     @IBAction func stop(sender: AnyObject){
         timer.invalidate()
+        if running{
+            running = false;
+        }
         //timer == nil
     }
     
-    func updateTime(){
+    @objc func updateTime(){
         var total = 0.0
         var tmprate = rate
         let currentTime = NSDate.timeIntervalSinceReferenceDate
@@ -117,11 +131,98 @@ class SWViewController: UIViewController {
         
     }
     
+    func calculateEarnings(start: TimeInterval, end: TimeInterval){
+        var total = 0.0
+        var tmprate = rate
+        var elapsedTime: TimeInterval = end - start
+        let hours = UInt8(elapsedTime/(60*60))
+        total = total + (Double(hours)*tmprate)
+        tmprate = tmprate/60.0
+        
+        elapsedTime -= (TimeInterval(hours) * 60*60)
+        
+        let minutes = UInt8(elapsedTime/60.0)
+        total = total + (Double(minutes)*tmprate)
+        tmprate = tmprate/60.0
+        
+        
+        elapsedTime -= (TimeInterval(minutes) * 60)
+        
+        let seconds = UInt8(elapsedTime)
+        total = total + (Double(seconds)*tmprate)
+        tmprate = tmprate/100.0
+        
+        elapsedTime -= TimeInterval(seconds)
+        
+        let fraction = UInt8(elapsedTime * 100)
+        total = total + (Double(fraction)*tmprate)
+        
+        
+        let strHours = String(format: "%02d", hours)
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        let strFraction = String(format: "%02d", fraction)
+        let strVal = String(format: "%2.2f", total)
+        
+        displayTimeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
+        valueLabel.text = "$\(strVal)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let app = UIApplication.shared
+        
+        // Register for the applicationWillResignActive anywhere in your app
+        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationWillResignActive(notification:)), name: NSNotification.Name.UIApplicationWillResignActive, object: app)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationDidBecomeActive(notification:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: app)
         // Do any additional setup after loading the view.
     }
+    
+    @objc func applicationWillResignActive(notification: NSNotification){
+        print("application went into the background")
+        bgTimeStamp = Date()
+    }
+    
+    @objc func applicationDidBecomeActive(notification: NSNotification){
+        print("application came into the foreground")
+        let endTimeStamp = Date()
+        let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: bgTimeStamp, to: endTimeStamp)
+        print(bgTimeStamp)
+        print(endTimeStamp)
+        print("difference is \(components.hour ?? 0) hours, \(components.minute ?? 0) minutes, \(components.second ?? 0) seconds, and \(components.nanosecond ?? 0) nanoseconds")
+        // TODO: update time to include 1/100th of second accuracy
+        //var diff = endTimeStamp - bgTimeStamp
+        
+    }
+    
+    /*
+     yeah... this didn't work :/
+     TODO figure this out
+    static func +(_ lhs: DateComponents, _ rhs: DateComponents) -> DateComponents{
+        return combineComponents(lhs, rhs)
+    }
+    
+    static func -(_ lhs: DateComponents, _ rhs:DateComponents) -> DateComponents{
+        return combineComponents(lhs, rhs)
+    }
+    
+    static func combineComponents(_ lhs: DateComponents,
+                           _ rhs: DateComponents,
+                           multiplier: Int = 1) -> DateComponents{
+        var result = DateComponents()
+        result.second     = (lhs.second     ?? 0) + (rhs.second     ?? 0) * multiplier
+        result.minute     = (lhs.minute     ?? 0) + (rhs.minute     ?? 0) * multiplier
+        result.hour       = (lhs.hour       ?? 0) + (rhs.hour       ?? 0) * multiplier
+        result.day        = (lhs.day        ?? 0) + (rhs.day        ?? 0) * multiplier
+        result.weekOfYear = (lhs.weekOfYear ?? 0) + (rhs.weekOfYear ?? 0) * multiplier
+        result.month      = (lhs.month      ?? 0) + (rhs.month      ?? 0) * multiplier
+        result.year       = (lhs.year       ?? 0) + (rhs.year       ?? 0) * multiplier
+        return result
+    }
+ 
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
