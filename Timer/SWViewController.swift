@@ -162,6 +162,7 @@ class SWViewController: UIViewController {
         bgTimeStamp = Date()
         if running{
             stop(sender: self)
+            bgBool = true
         }
     }
     
@@ -171,7 +172,10 @@ class SWViewController: UIViewController {
             firstRun = false
             return
         }
-        bgBool = true
+        if !bgBool{
+            return
+        }
+        //bgBool = true
         let endTimeStamp = Date()
         let end = NSDate.timeIntervalSinceReferenceDate
         let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: bgTimeStamp, to: endTimeStamp)
