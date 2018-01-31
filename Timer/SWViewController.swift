@@ -15,6 +15,10 @@ class SWViewController: UIViewController {
     var rate = 19.0
     var running = false;
     var bgTimeStamp = Date()
+    var bgBool = false
+    var earnings = 0.0
+    var timeElapsed: TimeInterval = NSDate.timeIntervalSinceReferenceDate
+    var firstRun = true;
     static let zero = "00:00:00:00"
     
     @IBOutlet var displayTimeLabel: UILabel!
@@ -75,9 +79,15 @@ class SWViewController: UIViewController {
             print("starting the timer")
             let aSelector : Selector = #selector(SWViewController.updateTime)
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
-            startTime = NSDate.timeIntervalSinceReferenceDate
+            if bgBool{
+                bgBool = false
+                
+            }
+            else{
+                startTime = NSDate.timeIntervalSinceReferenceDate
+            }
             // toggles running flag
-            running = !running
+            running = true
         }
         
     }
@@ -91,50 +101,17 @@ class SWViewController: UIViewController {
     }
     
     @objc func updateTime(){
-        var total = 0.0
-        var tmprate = rate
         let currentTime = NSDate.timeIntervalSinceReferenceDate
-        
-        var elapsedTime: TimeInterval = currentTime - startTime
-        
-        let hours = UInt8(elapsedTime/(60*60))
-        total = total + (Double(hours)*tmprate)
-        tmprate = tmprate/60.0
-        
-        elapsedTime -= (TimeInterval(hours) * 60*60)
-        
-        let minutes = UInt8(elapsedTime/60.0)
-        total = total + (Double(minutes)*tmprate)
-        tmprate = tmprate/60.0
-        
-        
-        elapsedTime -= (TimeInterval(minutes) * 60)
-        
-        let seconds = UInt8(elapsedTime)
-        total = total + (Double(seconds)*tmprate)
-        tmprate = tmprate/100.0
-        
-        elapsedTime -= TimeInterval(seconds)
-        
-        let fraction = UInt8(elapsedTime * 100)
-        total = total + (Double(fraction)*tmprate)
-        
-        
-        let strHours = String(format: "%02d", hours)
-        let strMinutes = String(format: "%02d", minutes)
-        let strSeconds = String(format: "%02d", seconds)
-        let strFraction = String(format: "%02d", fraction)
-        let strVal = String(format: "%2.2f", total)
-        
-        displayTimeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
-        valueLabel.text = "$\(strVal)"
+        calculateEarnings(start: startTime, end: currentTime)
+
         
     }
     
     func calculateEarnings(start: TimeInterval, end: TimeInterval){
-        var total = 0.0
+        var total = earnings
         var tmprate = rate
         var elapsedTime: TimeInterval = end - start
+        timeElapsed = elapsedTime
         let hours = UInt8(elapsedTime/(60*60))
         total = total + (Double(hours)*tmprate)
         tmprate = tmprate/60.0
@@ -183,15 +160,26 @@ class SWViewController: UIViewController {
     @objc func applicationWillResignActive(notification: NSNotification){
         print("application went into the background")
         bgTimeStamp = Date()
+        if running{
+            stop(sender: self)
+        }
     }
     
     @objc func applicationDidBecomeActive(notification: NSNotification){
         print("application came into the foreground")
+        if firstRun{
+            firstRun = false
+            return
+        }
+        bgBool = true
         let endTimeStamp = Date()
+        let end = NSDate.timeIntervalSinceReferenceDate
         let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: bgTimeStamp, to: endTimeStamp)
         print(bgTimeStamp)
         print(endTimeStamp)
         print("difference is \(components.hour ?? 0) hours, \(components.minute ?? 0) minutes, \(components.second ?? 0) seconds, and \(components.nanosecond ?? 0) nanoseconds")
+        calculateEarnings(start: startTime, end: end)
+        start(sender: self)
         // TODO: update time to include 1/100th of second accuracy
         //var diff = endTimeStamp - bgTimeStamp
         
