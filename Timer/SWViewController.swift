@@ -23,6 +23,7 @@ class SWViewController: UIViewController {
     
     @IBOutlet var displayTimeLabel: UILabel!
     @IBOutlet var valueLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
     
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
@@ -52,7 +53,8 @@ class SWViewController: UIViewController {
             }
             else{
                 let val: Double = Double(textFieldVal)!
-                self.rate = val 
+                self.rate = val
+                self.rateLabel.text = "Current Rate: \(val)"
                 print("Text field: \(val)")
             }
         }))
@@ -154,6 +156,8 @@ class SWViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationWillResignActive(notification:)), name: NSNotification.Name.UIApplicationWillResignActive, object: app)
 
         NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationDidBecomeActive(notification:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: app)
+        
+        rateLabel.text = "Current Rate: \(rate)"
         // Do any additional setup after loading the view.
     }
     
