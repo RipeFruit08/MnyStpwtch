@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SWViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class SWViewController: UIViewController {
     var timeElapsed: TimeInterval = NSDate.timeIntervalSinceReferenceDate
     var firstRun = true;
     static let zero = "00:00:00:00"
+    
     
     @IBOutlet var displayTimeLabel: UILabel!
     @IBOutlet var valueLabel: UILabel!
@@ -65,6 +67,34 @@ class SWViewController: UIViewController {
     }
     
     @IBAction func reset(sender: AnyObject){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "TimeEntry", in: context)
+        let newEntry = NSManagedObject(entity: entity!, insertInto: context)
+        newEntry.setValue(Date(), forKey: "date")
+        newEntry.setValue(Int64(timeElapsed), forKey: "elapsed")
+        newEntry.setValue(rate, forKey: "rate")
+        newEntry.setValue(Double(earnings).rounded(toPlaces: 2), forKey: "value")
+        do{
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "value") as! Double)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
         displayTimeLabel.text = SWViewController.zero
         valueLabel.text = "$0.00"
     }
@@ -110,7 +140,7 @@ class SWViewController: UIViewController {
     }
     
     func calculateEarnings(start: TimeInterval, end: TimeInterval){
-        var total = earnings
+        var total = 0.0
         var tmprate = rate
         var elapsedTime: TimeInterval = end - start
         timeElapsed = elapsedTime
@@ -142,7 +172,7 @@ class SWViewController: UIViewController {
         let strSeconds = String(format: "%02d", seconds)
         let strFraction = String(format: "%02d", fraction)
         let strVal = String(format: "%2.2f", total)
-        
+        earnings = total
         displayTimeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
         valueLabel.text = "$\(strVal)"
     }

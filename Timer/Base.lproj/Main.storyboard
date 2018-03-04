@@ -22,33 +22,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="I3W-CH-VRf">
-                                <rect key="frame" x="59" y="262.5" width="202" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCN-Ne-dbK">
-                                <rect key="frame" x="52" y="297.5" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Blb-bn-ajj">
+                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customcell" id="YTc-TW-Zyt">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YTc-TW-Zyt" id="pYd-bA-9vV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="I3W-CH-VRf" secondAttribute="centerY" id="Kzy-HE-LmL"/>
-                            <constraint firstItem="iCN-Ne-dbK" firstAttribute="centerX" secondItem="I3W-CH-VRf" secondAttribute="centerX" id="MY8-Ie-F4J"/>
-                            <constraint firstAttribute="centerX" secondItem="I3W-CH-VRf" secondAttribute="centerX" id="YJG-M3-kiv"/>
-                            <constraint firstItem="I3W-CH-VRf" firstAttribute="bottom" secondItem="iCN-Ne-dbK" secondAttribute="top" constant="8" symbolic="YES" id="nO4-a9-W4h"/>
+                            <constraint firstItem="Blb-bn-ajj" firstAttribute="bottom" secondItem="QyA-Xh-rGZ" secondAttribute="top" id="0mU-CA-7lc"/>
+                            <constraint firstItem="Blb-bn-ajj" firstAttribute="trailing" secondItem="sio-1Z-zQN" secondAttribute="trailing" id="6m5-cV-xi9"/>
+                            <constraint firstItem="Blb-bn-ajj" firstAttribute="top" secondItem="e8E-oc-vf9" secondAttribute="bottom" id="yrR-tk-YRH"/>
+                            <constraint firstItem="Blb-bn-ajj" firstAttribute="leading" secondItem="sio-1Z-zQN" secondAttribute="leading" id="zTR-rh-jfm"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="PP4-Kg-zk5"/>
+                    <connections>
+                        <outlet property="tableview" destination="Blb-bn-ajj" id="ogD-V9-Dwu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr9-45-xG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535" y="159"/>
+            <point key="canvasLocation" x="534.375" y="158.45070422535213"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="vLb-e3-hAh">
@@ -63,13 +67,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn9-sk-gOx">
-                                <rect key="frame" x="99" y="28" width="123" height="21"/>
+                                <rect key="frame" x="99" y="28" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu3-PG-wRn">
-                                <rect key="frame" x="124" y="57" width="72" height="21"/>
+                                <rect key="frame" x="123.5" y="57" width="72" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="blB-dq-58N"/>
                                 </constraints>
@@ -92,21 +96,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIZ-GN-7pB">
-                                <rect key="frame" x="141" y="481" width="39" height="30"/>
+                                <rect key="frame" x="140.5" y="481" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetWithSender:" destination="uLY-W1-LZ7" eventType="touchUpInside" id="0Q8-oI-CUn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0b-Vf-PyG">
-                                <rect key="frame" x="131" y="269" width="58" height="30"/>
+                                <rect key="frame" x="130.5" y="269" width="58" height="30"/>
                                 <state key="normal" title="Set Rate"/>
                                 <connections>
                                     <action selector="setRateWithSender:" destination="uLY-W1-LZ7" eventType="touchUpInside" id="JN9-Ip-g8v"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Rate: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYm-O6-ldu">
-                                <rect key="frame" x="66" y="240" width="189" height="21"/>
+                                <rect key="frame" x="66" y="240" width="188" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
