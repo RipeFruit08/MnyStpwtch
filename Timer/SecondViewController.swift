@@ -58,6 +58,19 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if ( editingStyle == UITableViewCellEditingStyle.delete){
+            print("put code for delete action here")
+            let alert = UIAlertController(title: "Delete", message: "This feature still needs to be implemented :(", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     
 }
 
