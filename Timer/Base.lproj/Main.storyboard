@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--History-->
         <scene sceneID="xAs-Jj-R5Q">
             <objects>
                 <viewController id="GAc-vG-00g" customClass="SecondViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                             <constraint firstItem="Blb-bn-ajj" firstAttribute="leading" secondItem="sio-1Z-zQN" secondAttribute="leading" id="zTR-rh-jfm"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="PP4-Kg-zk5"/>
+                    <tabBarItem key="tabBarItem" title="History" id="PP4-Kg-zk5"/>
                     <connections>
                         <outlet property="tableview" destination="Blb-bn-ajj" id="ogD-V9-Dwu"/>
                     </connections>
@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="534.375" y="158.45070422535213"/>
         </scene>
-        <!--Item 1-->
+        <!--Main-->
         <scene sceneID="vLb-e3-hAh">
             <objects>
                 <viewController id="uLY-W1-LZ7" customClass="SWViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
                             <constraint firstItem="SG6-oI-fSn" firstAttribute="top" secondItem="Ma8-0O-2dw" secondAttribute="bottom" constant="8" symbolic="YES" id="y5V-Zu-zEY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="tl4-Pk-kWw"/>
+                    <tabBarItem key="tabBarItem" title="Main" id="tl4-Pk-kWw"/>
                     <connections>
                         <outlet property="displayTimeLabel" destination="yn9-sk-gOx" id="Pt6-YC-uUg"/>
                         <outlet property="rateLabel" destination="tYm-O6-ldu" id="gIU-RL-4wI"/>
