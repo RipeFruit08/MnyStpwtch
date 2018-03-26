@@ -68,7 +68,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
             print("put code for delete action here")
             let alert = UIAlertController(title: "Delete", message: "Do you want to delete this entry?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {_ in
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
                 let toDelete = self.timeEntries[indexPath.row]

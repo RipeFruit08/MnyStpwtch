@@ -32,6 +32,7 @@ class SWViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var setButton: UIButton!
+    @IBOutlet var settingsButton: UIBarButtonItem!
     
     /**
      Sets rate value that is being used to calculate money earned
@@ -130,6 +131,13 @@ class SWViewController: UIViewController {
             running = false;
         }
         //timer == nil
+    }
+    
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        print("settings button tapped")
+        let alert = UIAlertController(title: "Placeholder", message: "tapping this button goes to a settings view eventually", preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func updateTime(){
