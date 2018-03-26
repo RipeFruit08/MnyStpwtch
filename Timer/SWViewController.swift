@@ -182,6 +182,7 @@ class SWViewController: UIViewController {
         let strVal = String(format: "%2.2f", total)
         earnings = total
         displayTimeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
+        //displayTimeLabel.sizeToFit();
         valueLabel.text = "$\(strVal)"
     }
     
@@ -189,6 +190,7 @@ class SWViewController: UIViewController {
         super.viewDidLoad()
         
         let app = UIApplication.shared
+        displayTimeLabel.font = displayTimeLabel.font.monospacedDigitFont;
         
         // Register for the applicationWillResignActive anywhere in your app
         NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationWillResignActive(notification:)), name: NSNotification.Name.UIApplicationWillResignActive, object: app)
