@@ -85,6 +85,10 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("this cell was tapped")
+    }
+    
     
 }
 
