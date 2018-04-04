@@ -11,6 +11,8 @@
 		0A7290C21E272D8400B90134 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C01E272D8400B90134 /* Main.storyboard */; };
 		0A7290C41E272D8400B90134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C31E272D8400B90134 /* Assets.xcassets */; };
 		0A7290C71E272D8400B90134 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C51E272D8400B90134 /* LaunchScreen.storyboard */; };
+		0AC6E5C52072F58D00028C01 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */; };
+		0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E5C720744B2000028C01 /* HistoryEntry.swift */; };
 		0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */; };
 		6E299C0A2069996D00C08298 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E299C092069996D00C08298 /* UIFontExtension.swift */; };
 		6E941B9D204CB809007DB31D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E941B9C204CB809007DB31D /* DoubleExtension.swift */; };
@@ -26,6 +28,8 @@
 		0A7290C31E272D8400B90134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A7290C61E272D8400B90134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A7290C81E272D8400B90134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
+		0AC6E5C720744B2000028C01 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
 		0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWViewController.swift; sourceTree = "<group>"; };
 		6E299C092069996D00C08298 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		6E941B9C204CB809007DB31D /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 		0A7290BB1E272D8400B90134 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				0AC6E5C620744B0B00028C01 /* Models */,
 				6E941B97204CACC0007DB31D /* Extensions */,
 				0A7290BC1E272D8400B90134 /* AppDelegate.swift */,
 				0A7290C01E272D8400B90134 /* Main.storyboard */,
@@ -73,9 +78,18 @@
 				0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */,
 				6EE12AE02040F444003C838A /* RootViewController.swift */,
 				6EE12B022040F73E003C838A /* SecondViewController.swift */,
+				0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */,
 				6EE12B072041148C003C838A /* HistoryModel.xcdatamodeld */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		0AC6E5C620744B0B00028C01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0AC6E5C720744B2000028C01 /* HistoryEntry.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6E941B97204CACC0007DB31D /* Extensions */ = {
@@ -165,7 +179,9 @@
 				6EE12B032040F73E003C838A /* SecondViewController.swift in Sources */,
 				0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */,
 				6E299C0A2069996D00C08298 /* UIFontExtension.swift in Sources */,
+				0AC6E5C52072F58D00028C01 /* HistoryDetailsViewController.swift in Sources */,
 				6EE12B092041148C003C838A /* HistoryModel.xcdatamodeld in Sources */,
+				0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */,
 				0A7290BD1E272D8400B90134 /* AppDelegate.swift in Sources */,
 				6EE12AE12040F444003C838A /* RootViewController.swift in Sources */,
 			);

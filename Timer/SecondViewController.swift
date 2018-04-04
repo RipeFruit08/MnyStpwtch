@@ -89,6 +89,25 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         print("this cell was tapped")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "historyDetailsSegue"{
+            print("this code got called!")
+            if let selectedIndex = tableview.indexPathForSelectedRow?.row{
+                let selected = timeEntries[selectedIndex]
+                let date = selected.value(forKey: "date") as! Date
+                let elapsed = selected.value(forKey: "elapsed") as! Int
+                let rate = selected.value(forKey: "rate") as! Double
+                let value = selected.value(forKey: "value") as! Double
+                let entry = HistoryEntry(date: date, elapsed: elapsed, rate: rate, value: value)
+                let navController = segue.destination as! HistoryDetailsViewController
+                navController.passedData = "fuck";
+                navController.historyEntry = entry;
+            }
+            
+
+        }
+    }
+    
     
 }
 
