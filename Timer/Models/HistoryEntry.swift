@@ -15,13 +15,15 @@ class HistoryEntry{
     var elapsed: Int // seconds
     var rate: Double
     var value: Double
+    var comment: String?
     
     //MARK: Initialization
-    init(date: Date, elapsed: Int, rate: Double, value: Double) {
+    init(date: Date, elapsed: Int, rate: Double, value: Double, comment: String?) {
         // TODO needs validation?
         self.date = date
         self.elapsed = elapsed
         self.rate = rate
         self.value = value
+        self.comment = comment
     }
 }

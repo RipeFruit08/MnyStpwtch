@@ -15,10 +15,12 @@ class HistoryDetailsViewController: UIViewController {
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet var commentsTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad in HistoryDetailsViewController!")
+        //self.view.backgroundColor = UIColor(named: "black")
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
@@ -30,6 +32,7 @@ class HistoryDetailsViewController: UIViewController {
             elapsedTimeLabel.text = "\(entry.elapsed)" + " seconds"
             rateLabel.text = "$\(entry.rate)"
             valueLabel.text = "$\(entry.value)"
+            commentsTextView.text = entry.comment ?? "No comment."
         }
         
         if let val = passedData{
