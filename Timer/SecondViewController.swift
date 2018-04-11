@@ -98,7 +98,8 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
                 let elapsed = selected.value(forKey: "elapsed") as! Int
                 let rate = selected.value(forKey: "rate") as! Double
                 let value = selected.value(forKey: "value") as! Double
-                let entry = HistoryEntry(date: date, elapsed: elapsed, rate: rate, value: value, comment: nil)
+                let comment = selected.value(forKey: "comment") as! String?
+                let entry = HistoryEntry(date: date, elapsed: elapsed, rate: rate, value: value, comment: comment)
                 let navController = segue.destination as! HistoryDetailsViewController
                 navController.passedData = "fuck";
                 navController.historyEntry = entry;

@@ -27,6 +27,7 @@ class SWViewController: UIViewController {
     @IBOutlet var valueLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     
+    @IBOutlet var saveButton: UIButton!
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
@@ -67,35 +68,36 @@ class SWViewController: UIViewController {
         print("Set button was pressed!")
     }
     
-    @IBAction func reset(sender: AnyObject){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "TimeEntry", in: context)
-        let newEntry = NSManagedObject(entity: entity!, insertInto: context)
-        newEntry.setValue(Date(), forKey: "date")
-        newEntry.setValue(Int64(timeElapsed), forKey: "elapsed")
-        newEntry.setValue(rate, forKey: "rate")
-        newEntry.setValue(Double(earnings).rounded(toPlaces: 2), forKey: "value")
-        do{
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
-        request.returnsObjectsAsFaults = false
-        
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "value") as! Double)
+    @IBAction func save(_ sender: Any) {
+        if (!running){
+            let alert = UIAlertController(title: "Comment?", message: "You can leave a comment here", preferredStyle: .alert)
+            // the textbox for new rate value
+            alert.addTextField { (textField) in
+                textField.keyboardType = UIKeyboardType.default
             }
-            
-        } catch {
-            
-            print("Failed")
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0]
+                let comment = textField?.text
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let entity = NSEntityDescription.entity(forEntityName: "TimeEntry", in: context)
+                let newEntry = NSManagedObject(entity: entity!, insertInto: context)
+                newEntry.setValue(Date(), forKey: "date")
+                newEntry.setValue(Int64(self.timeElapsed), forKey: "elapsed")
+                newEntry.setValue(self.rate, forKey: "rate")
+                newEntry.setValue(Double(self.earnings).rounded(toPlaces: 2), forKey: "value")
+                newEntry.setValue(comment, forKey: "comment")
+                do{
+                    try context.save()
+                } catch {
+                    print("Failed saving")
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+            print("Set button was pressed!")
         }
+    }
+    @IBAction func reset(sender: AnyObject){
         displayTimeLabel.text = SWViewController.zero
         valueLabel.text = "$0.00"
     }
@@ -233,33 +235,6 @@ class SWViewController: UIViewController {
         
     }
     
-    /*
-     yeah... this didn't work :/
-     TODO figure this out
-    static func +(_ lhs: DateComponents, _ rhs: DateComponents) -> DateComponents{
-        return combineComponents(lhs, rhs)
-    }
-    
-    static func -(_ lhs: DateComponents, _ rhs:DateComponents) -> DateComponents{
-        return combineComponents(lhs, rhs)
-    }
-    
-    static func combineComponents(_ lhs: DateComponents,
-                           _ rhs: DateComponents,
-                           multiplier: Int = 1) -> DateComponents{
-        var result = DateComponents()
-        result.second     = (lhs.second     ?? 0) + (rhs.second     ?? 0) * multiplier
-        result.minute     = (lhs.minute     ?? 0) + (rhs.minute     ?? 0) * multiplier
-        result.hour       = (lhs.hour       ?? 0) + (rhs.hour       ?? 0) * multiplier
-        result.day        = (lhs.day        ?? 0) + (rhs.day        ?? 0) * multiplier
-        result.weekOfYear = (lhs.weekOfYear ?? 0) + (rhs.weekOfYear ?? 0) * multiplier
-        result.month      = (lhs.month      ?? 0) + (rhs.month      ?? 0) * multiplier
-        result.year       = (lhs.year       ?? 0) + (rhs.year       ?? 0) * multiplier
-        return result
-    }
- 
-    */
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

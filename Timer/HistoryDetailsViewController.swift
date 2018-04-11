@@ -22,8 +22,8 @@ class HistoryDetailsViewController: UIViewController {
         print("viewDidLoad in HistoryDetailsViewController!")
         //self.view.backgroundColor = UIColor(named: "black")
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
         let label = UILabel(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
         // TODO teach yourself NSLayoutConstraints
         //NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
