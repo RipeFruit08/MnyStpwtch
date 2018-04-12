@@ -19,7 +19,9 @@ class SWViewController: UIViewController {
     var bgBool = false
     var earnings = 0.0
     var timeElapsed: TimeInterval = NSDate.timeIntervalSinceReferenceDate
-    var firstRun = true;
+    var firstRun = true
+    var DarkisOn: Bool?
+    let userDefaults = UserDefaults.standard
     static let zero = "00:00:00:00"
     
     
@@ -28,12 +30,49 @@ class SWViewController: UIViewController {
     @IBOutlet weak var rateLabel: UILabel!
     
     @IBOutlet var saveButton: UIButton!
-    @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var setButton: UIButton!
-    @IBOutlet var settingsButton: UIBarButtonItem!
+    
+    @objc private func darkModeEnabled(_ notification: Notification) {
+        // Write your dark mode code here
+        print("darkModeEnabled code")
+        applyDarkMode()
+        
+        //stopButton.setTitle("yo", for: .normal)
+    }
+    
+    @objc private func darkModeDisabled(_ notification: Notification) {
+        // Write your non-dark mode code here
+        print("darkModeDisabled code")
+        //stopButton.setTitle("oy", for: .normal)
+        applyLightMode()
+    }
+    
+    // am i doing this right? ¯\_(ツ)_/¯
+    private func applyTheme(){
+        // TODO what if no key is set? it will return false
+        // that would mean default implementation of the app would be to have a light theme
+        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
+        if let mode = DarkisOn{
+            if mode{
+                applyDarkMode()
+            }
+            else{
+                applyLightMode()
+            }
+        }
+    }
+    
+    private func applyDarkMode(){
+        self.view.backgroundColor = UIColor.black
+    }
+    
+    private func applyLightMode(){
+        self.view.backgroundColor = UIColor.white
+        //darkThemeToggle.setOn(false, animated: true)
+    }
     
     /**
      Sets rate value that is being used to calculate money earned
@@ -102,12 +141,6 @@ class SWViewController: UIViewController {
         valueLabel.text = "$0.00"
     }
     
-    @IBAction func rateButtonPressed(sender: AnyObject){
-        let alert = UIAlertController(title: "Current Rate", message: "\(rate)", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title:"Okay", style: .default))
-        self.present(alert, animated: true, completion:nil)
-    }
-    
     @IBAction func start(sender: AnyObject){
         
         if !timer.isValid{
@@ -135,18 +168,10 @@ class SWViewController: UIViewController {
         //timer == nil
     }
     
-    @IBAction func settingsButtonPressed(sender: AnyObject) {
-        print("settings button tapped")
-        let alert = UIAlertController(title: "Placeholder", message: "tapping this button goes to a settings view eventually", preferredStyle: .alert )
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
+    // TODO move this somewhere?
     @objc func updateTime(){
         let currentTime = NSDate.timeIntervalSinceReferenceDate
         calculateEarnings(start: startTime, end: currentTime)
-
-        
     }
     
     func calculateEarnings(start: TimeInterval, end: TimeInterval){
@@ -190,6 +215,11 @@ class SWViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Add Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
+        
+        applyTheme()
         
         let app = UIApplication.shared
         displayTimeLabel.font = displayTimeLabel.font.monospacedDigitFont;
@@ -240,15 +270,22 @@ class SWViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "settingsSegue"{
+            print("fuck")
+        }
     }
-    */
+ 
 
 }

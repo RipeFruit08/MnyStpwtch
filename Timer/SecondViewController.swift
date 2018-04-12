@@ -13,12 +13,17 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBOutlet var tableview: UITableView!
+    var DarkisOn: Bool?
+    let userDefaults = UserDefaults.standard
     let myarray = ["item1", "item2", "item3"]
     var timeEntries = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Add Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
+        applyTheme()
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate = self
         tableview.dataSource = self
@@ -49,6 +54,49 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    @objc private func darkModeEnabled(_ notification: Notification) {
+        // Write your dark mode code here
+        print("darkModeEnabled code")
+        applyDarkMode()
+    }
+    
+    @objc private func darkModeDisabled(_ notification: Notification) {
+        // Write your non-dark mode code here
+        print("darkModeDisabled code")
+        applyLightMode()
+    }
+    
+    // am i doing this right? ¯\_(ツ)_/¯
+    private func applyTheme(){
+        // TODO what if no key is set? it will return false
+        // that would mean default implementation of the app would be to have a light theme
+        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
+        if let mode = DarkisOn{
+            if mode{
+                applyDarkMode()
+            }
+            else{
+                applyLightMode()
+            }
+        }
+    }
+    
+    private func applyDarkMode(){
+        self.view.backgroundColor = UIColor.black
+        tableview.backgroundColor = UIColor.black
+        // https://stackoverflow.com/questions/25585543/how-to-change-the-text-color-of-all-text-in-uiview
+        // updating color of all labels in view
+        // TODO make function to change all UILabels to a color
+    }
+    
+    private func applyLightMode(){
+        self.view.backgroundColor = UIColor.white
+        tableview.backgroundColor = UIColor.white
+        // why didnt these work?
+        //UITableViewCell.appearance().textLabel?.textColor = UIColor.blue
+        //UITableViewCell.appearance().backgroundColor = UIColor.clear
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timeEntries.count
     }
@@ -56,6 +104,18 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
         cell.textLabel?.text = "\(timeEntries[indexPath.row].value(forKey: "value") as! Double)"
+        // TODO THIS IS A TERRIBLE HACK!!! DON"T DO THIS
+        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
+        if let mode = DarkisOn{
+            if mode{
+                cell.textLabel?.textColor = UIColor.white
+                cell.backgroundColor = UIColor.black
+            } else{
+                cell.textLabel?.textColor = UIColor.black
+                cell.backgroundColor = UIColor.clear
+            }
+        }
+        
         return cell
     }
     
@@ -87,6 +147,11 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("this cell was tapped")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
