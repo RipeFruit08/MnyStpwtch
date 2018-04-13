@@ -67,11 +67,33 @@ class SWViewController: UIViewController {
     
     private func applyDarkMode(){
         self.view.backgroundColor = UIColor.black
+        colorUILabels(color: UIColor.white)
     }
     
     private func applyLightMode(){
         self.view.backgroundColor = UIColor.white
+        colorUILabels(color: UIColor.black)
         //darkThemeToggle.setOn(false, animated: true)
+    }
+    
+    private func colorUILabels(color: UIColor){
+        //Get all UIViews in self.view.subViews
+        //TODO this is magic ._. read up on compactMap
+        let labels = self.view.subviews.compactMap { $0 as? UILabel }
+        
+        for label in labels {
+            label.textColor = color
+        }
+        /*
+        for (UIView *view in [self.view subviews]) {
+            //Check if the view is of UILabel class
+            if ([view isKindOfClass:[UILabel class]]) {
+                //Cast the view to a UILabel
+                UILabel *label = (UILabel *)view;
+                //Set the color to label
+                label.textColor = [UIColor redColor];
+            }
+        }*/
     }
     
     /**

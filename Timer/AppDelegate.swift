@@ -26,6 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error as Any)
         }
         */
+        /*
+         TODO get this working :(
+        let navigationBarAppearace = UINavigationBar.appearance()
+        let userDefaults = UserDefaults.standard
+        let darkThemeOn = userDefaults.bool(forKey: "DarkDefault")
+        if darkThemeOn{
+            navigationBarAppearace.tintColor = UIColor.white
+            navigationBarAppearace.isTranslucent = false
+            navigationBarAppearace.barTintColor = UIColor.black
+        } else{
+            navigationBarAppearace.tintColor = UIColor.black
+            navigationBarAppearace.isTranslucent = false
+            navigationBarAppearace.barTintColor = UIColor.white
+        }
+         */
+        //navigationBarAppearace.backgroundColor = UIColor.black
+        
+        
         return true
     }
 

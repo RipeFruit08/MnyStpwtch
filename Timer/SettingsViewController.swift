@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController {
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
+        
         print("hi?")
         applyTheme()
         // Do any additional setup after loading the view.
