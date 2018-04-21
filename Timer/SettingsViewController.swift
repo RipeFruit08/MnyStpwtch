@@ -36,12 +36,20 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func darkModeSwitched(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if darkThemeToggle.isOn{
             //enable dark mode
-            //print("this shit be on")
             DarkisOn = true
             userDefaults.set(true, forKey: "DarkDefault")
             userDefaults.set(false, forKey: "LightDefault")
+            // update nav bar color for future views but still need to update current view
+            appDelegate.applyTheme()
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.shadowImage = UIColor.white.asImage(width: 0.25, height: 0.25)
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
             NotificationCenter.default.post(name: .darkModeEnabled, object: nil)
         }
         else{
@@ -49,6 +57,13 @@ class SettingsViewController: UIViewController {
             DarkisOn = false
             userDefaults.set(false, forKey: "DarkDefault")
             userDefaults.set(true, forKey: "LightDefault")
+            appDelegate.applyTheme()
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.shadowImage = UIColor.black.asImage(width: 0.25, height: 0.25)
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
             NotificationCenter.default.post(name: .darkModeDisabled, object: nil)
         }
     }
