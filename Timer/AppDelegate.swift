@@ -126,6 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             UIApplication.shared.statusBarStyle = .lightContent
             tabBarAppearance.barTintColor = UIColor.black
+            UITextField.appearance().keyboardAppearance = .dark
             
         } else{
             navigationBarAppearace.tintColor = UIColor.black
@@ -135,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             UIApplication.shared.statusBarStyle = .default
             tabBarAppearance.barTintColor = UIColor.white
+            UITextField.appearance().keyboardAppearance = .light
         }
     }
     

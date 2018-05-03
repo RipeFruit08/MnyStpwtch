@@ -12,4 +12,5 @@ import Foundation
 extension Notification.Name {
     static let darkModeEnabled = Notification.Name("com.yourApp.notifications.darkModeEnabled")
     static let darkModeDisabled = Notification.Name("com.yourApp.notifications.darkModeDisabled")
+    static let userRateChanged = Notification.Name("com.yourApp.notifications.userRateChanged")
 }

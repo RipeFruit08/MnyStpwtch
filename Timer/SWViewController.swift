@@ -50,6 +50,13 @@ class SWViewController: UIViewController {
         applyLightMode()
     }
     
+    @objc private func userRateChanged(_ notification: Notification){
+        // grabs updated userDefault values and updates displayed rate
+        let newRate: Double = userDefaults.double(forKey: "UserRate")
+        self.rate = newRate
+        self.rateLabel.text = "Current Rate: \(newRate)"
+    }
+    
     // am i doing this right? ¯\_(ツ)_/¯
     private func applyTheme(){
         // TODO what if no key is set? it will return false
@@ -63,6 +70,8 @@ class SWViewController: UIViewController {
                 applyLightMode()
             }
         }
+        rate = userDefaults.double(forKey: "UserRate")
+        rateLabel.text = "Current Rate: \(rate)"
     }
     
     private func applyDarkMode(){
@@ -76,6 +85,7 @@ class SWViewController: UIViewController {
         //darkThemeToggle.setOn(false, animated: true)
     }
     
+    // TODO can this be brought out to a different file so all VCs can call this method?
     private func colorUILabels(color: UIColor){
         //Get all UIViews in self.view.subViews
         //TODO this is magic ._. read up on compactMap
@@ -84,16 +94,6 @@ class SWViewController: UIViewController {
         for label in labels {
             label.textColor = color
         }
-        /*
-        for (UIView *view in [self.view subviews]) {
-            //Check if the view is of UILabel class
-            if ([view isKindOfClass:[UILabel class]]) {
-                //Cast the view to a UILabel
-                UILabel *label = (UILabel *)view;
-                //Set the color to label
-                label.textColor = [UIColor redColor];
-            }
-        }*/
     }
     
     /**
@@ -240,6 +240,8 @@ class SWViewController: UIViewController {
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userRateChanged(_:)), name: .userRateChanged, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         
         applyTheme()
         
@@ -251,7 +253,7 @@ class SWViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationDidBecomeActive(notification:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: app)
         
-        rateLabel.text = "Current Rate: \(rate)"
+
         // Do any additional setup after loading the view.
     }
     
@@ -295,6 +297,7 @@ class SWViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
         NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .userRateChanged, object: nil)
     }
 
     
