@@ -178,7 +178,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn9-sk-gOx">
-                                <rect key="frame" x="0.0" y="96.666666666666671" width="375" height="39.000000000000014"/>
+                                <rect key="frame" x="0.0" y="97" width="375" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="UEF-vk-KJj"/>
                                 </constraints>
@@ -207,21 +207,8 @@
                                     <action selector="resetWithSender:" destination="uLY-W1-LZ7" eventType="touchUpInside" id="0Q8-oI-CUn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0b-Vf-PyG">
-                                <rect key="frame" x="159" y="391" width="58" height="30"/>
-                                <state key="normal" title="Set Rate"/>
-                                <connections>
-                                    <action selector="setRateWithSender:" destination="uLY-W1-LZ7" eventType="touchUpInside" id="JN9-Ip-g8v"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Rate: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYm-O6-ldu">
-                                <rect key="frame" x="66" y="362" width="244" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu3-PG-wRn">
-                                <rect key="frame" x="152" y="143.66666666666666" width="72" height="21"/>
+                                <rect key="frame" x="152" y="144" width="72" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="gGn-SM-QX1"/>
                                 </constraints>
@@ -236,29 +223,32 @@
                                     <action selector="save:" destination="uLY-W1-LZ7" eventType="touchUpInside" id="Q96-QM-IFz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Rate: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYm-O6-ldu">
+                                <rect key="frame" x="135" y="396" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="tYm-O6-ldu" firstAttribute="centerX" secondItem="iu3-PG-wRn" secondAttribute="centerX" id="2Kb-0Z-yJF"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="top" secondItem="wDn-K1-Yg2" secondAttribute="bottom" constant="8" symbolic="YES" id="4dQ-ho-mR4"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="centerX" secondItem="wDn-K1-Yg2" secondAttribute="centerX" id="8Wh-Ol-FO1"/>
                             <constraint firstItem="yn9-sk-gOx" firstAttribute="leading" secondItem="dmZ-WD-2Xk" secondAttribute="leading" id="9r6-el-9bO"/>
                             <constraint firstItem="Ma8-0O-2dw" firstAttribute="leading" secondItem="dmZ-WD-2Xk" secondAttribute="leadingMargin" id="CBa-w2-LUh"/>
+                            <constraint firstItem="tYm-O6-ldu" firstAttribute="centerY" secondItem="dmZ-WD-2Xk" secondAttribute="centerY" id="HKx-Je-XRq"/>
                             <constraint firstItem="v6V-Vv-nXj" firstAttribute="trailing" secondItem="dmZ-WD-2Xk" secondAttribute="trailingMargin" id="L0M-tl-4OH"/>
-                            <constraint firstItem="R0b-Vf-PyG" firstAttribute="centerX" secondItem="lIZ-GN-7pB" secondAttribute="centerX" id="O0h-me-6Qe"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="leading" secondItem="wDn-K1-Yg2" secondAttribute="leading" id="P4u-Pn-JsI"/>
-                            <constraint firstItem="iu3-PG-wRn" firstAttribute="centerX" secondItem="tYm-O6-ldu" secondAttribute="centerX" id="SLg-sa-PyW"/>
                             <constraint firstItem="yn9-sk-gOx" firstAttribute="trailing" secondItem="dmZ-WD-2Xk" secondAttribute="trailing" id="UVn-sL-Kmn"/>
-                            <constraint firstItem="tYm-O6-ldu" firstAttribute="leading" secondItem="dmZ-WD-2Xk" secondAttribute="leadingMargin" constant="50" id="XQO-Js-3mB"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="baseline" secondItem="v6V-Vv-nXj" secondAttribute="baseline" id="YZP-df-ZHv"/>
-                            <constraint firstItem="R0b-Vf-PyG" firstAttribute="centerY" secondItem="dmZ-WD-2Xk" secondAttribute="centerY" id="ayH-uh-wOD"/>
                             <constraint firstItem="SG6-oI-fSn" firstAttribute="top" secondItem="Ma8-0O-2dw" secondAttribute="bottom" constant="8" symbolic="YES" id="bJU-6w-DDW"/>
                             <constraint firstItem="Ma8-0O-2dw" firstAttribute="baseline" secondItem="lIZ-GN-7pB" secondAttribute="baseline" id="bLs-T8-ppJ"/>
                             <constraint firstItem="yn9-sk-gOx" firstAttribute="top" secondItem="xXl-Xl-2ff" secondAttribute="bottom" multiplier="1.1" id="exe-qM-C2l"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="trailing" secondItem="wDn-K1-Yg2" secondAttribute="trailing" id="gMH-Yd-wl2"/>
-                            <constraint firstItem="R0b-Vf-PyG" firstAttribute="top" secondItem="tYm-O6-ldu" secondAttribute="bottom" constant="8" symbolic="YES" id="lXS-ZW-ltg"/>
+                            <constraint firstItem="tYm-O6-ldu" firstAttribute="centerX" secondItem="wDn-K1-Yg2" secondAttribute="centerX" id="j1J-x4-jE8"/>
                             <constraint firstItem="yn9-sk-gOx" firstAttribute="centerX" secondItem="iu3-PG-wRn" secondAttribute="centerX" id="nLh-H3-d3M"/>
                             <constraint firstItem="iu3-PG-wRn" firstAttribute="top" secondItem="yn9-sk-gOx" secondAttribute="bottom" constant="8" symbolic="YES" id="t6c-Mu-VbG"/>
-                            <constraint firstItem="tYm-O6-ldu" firstAttribute="centerX" secondItem="R0b-Vf-PyG" secondAttribute="centerX" id="yNb-cm-cay"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stopwatch" id="v9F-La-w5U"/>
@@ -267,7 +257,6 @@
                         <outlet property="rateLabel" destination="tYm-O6-ldu" id="gIU-RL-4wI"/>
                         <outlet property="resetButton" destination="lIZ-GN-7pB" id="aP6-zX-tGt"/>
                         <outlet property="saveButton" destination="wDn-K1-Yg2" id="JSH-c7-SIw"/>
-                        <outlet property="setButton" destination="R0b-Vf-PyG" id="gQp-Qy-xPG"/>
                         <outlet property="startButton" destination="Ma8-0O-2dw" id="Lnp-LU-Vay"/>
                         <outlet property="stopButton" destination="v6V-Vv-nXj" id="dFY-ce-xeM"/>
                         <outlet property="valueLabel" destination="iu3-PG-wRn" id="KAY-px-wup"/>

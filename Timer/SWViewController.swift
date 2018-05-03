@@ -33,7 +33,6 @@ class SWViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var setButton: UIButton!
     
     @objc private func darkModeEnabled(_ notification: Notification) {
         // Write your dark mode code here
@@ -94,39 +93,6 @@ class SWViewController: UIViewController {
         for label in labels {
             label.textColor = color
         }
-    }
-    
-    /**
-     Sets rate value that is being used to calculate money earned
-    */
-    @IBAction func setRate(sender: AnyObject){
-        // the pop-up dialog box
-        let alert = UIAlertController(title: "Set a rate", message: "What do you want the new rate to be?", preferredStyle: .alert)
-        // the textbox for new rate value
-        alert.addTextField { (textField) in
-            //textField.text = "default text"
-            textField.text = String(self.rate)
-            textField.keyboardType = UIKeyboardType.decimalPad
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0]
-            let textFieldVal: String = (textField?.text)!
-            //print(textFieldVal)
-            if (textFieldVal.isEmpty){
-                print("This string is empty")
-            }
-            else{
-                let val: Double = Double(textFieldVal)!
-                self.rate = val
-                self.rateLabel.text = "Current Rate: \(val)"
-                print("Text field: \(val)")
-            }
-        }))
-        //alert.addAction{ (textField) in textField.text = "Some default text"
-        //}
-        self.present(alert, animated: true, completion: nil)
-        print("Set button was pressed!")
     }
     
     @IBAction func save(_ sender: Any) {
@@ -303,14 +269,11 @@ class SWViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "settingsSegue"{
-            print("fuck")
-        }
-    }
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//    }
  
 
 }
