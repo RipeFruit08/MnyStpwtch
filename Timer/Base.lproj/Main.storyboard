@@ -7,7 +7,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -178,7 +177,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn9-sk-gOx">
-                                <rect key="frame" x="0.0" y="97" width="375" height="39"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="UEF-vk-KJj"/>
                                 </constraints>
@@ -208,7 +207,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu3-PG-wRn">
-                                <rect key="frame" x="152" y="144" width="72" height="21"/>
+                                <rect key="frame" x="152" y="145" width="72" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="gGn-SM-QX1"/>
                                 </constraints>
@@ -244,7 +243,7 @@
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="baseline" secondItem="v6V-Vv-nXj" secondAttribute="baseline" id="YZP-df-ZHv"/>
                             <constraint firstItem="SG6-oI-fSn" firstAttribute="top" secondItem="Ma8-0O-2dw" secondAttribute="bottom" constant="8" symbolic="YES" id="bJU-6w-DDW"/>
                             <constraint firstItem="Ma8-0O-2dw" firstAttribute="baseline" secondItem="lIZ-GN-7pB" secondAttribute="baseline" id="bLs-T8-ppJ"/>
-                            <constraint firstItem="yn9-sk-gOx" firstAttribute="top" secondItem="xXl-Xl-2ff" secondAttribute="bottom" multiplier="1.1" id="exe-qM-C2l"/>
+                            <constraint firstItem="yn9-sk-gOx" firstAttribute="top" secondItem="xXl-Xl-2ff" secondAttribute="bottom" constant="10" id="exe-qM-C2l"/>
                             <constraint firstItem="lIZ-GN-7pB" firstAttribute="trailing" secondItem="wDn-K1-Yg2" secondAttribute="trailing" id="gMH-Yd-wl2"/>
                             <constraint firstItem="tYm-O6-ldu" firstAttribute="centerX" secondItem="wDn-K1-Yg2" secondAttribute="centerX" id="j1J-x4-jE8"/>
                             <constraint firstItem="yn9-sk-gOx" firstAttribute="centerX" secondItem="iu3-PG-wRn" secondAttribute="centerX" id="nLh-H3-d3M"/>

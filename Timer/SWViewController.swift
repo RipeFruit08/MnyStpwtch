@@ -129,31 +129,41 @@ class SWViewController: UIViewController {
         valueLabel.text = "$0.00"
     }
     
-    @IBAction func start(sender: AnyObject){
-        
+    func startTimer(){
         if !timer.isValid{
-            print("starting the timer")
-            let aSelector : Selector = #selector(SWViewController.updateTime)
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            print("startTimer")
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
             if bgBool{
                 bgBool = false
-                
             }
             else{
                 startTime = NSDate.timeIntervalSinceReferenceDate
             }
-            // toggles running flag
             running = true
+        }
+    }
+    
+    func stopTimer(){
+        timer.invalidate()
+        running = false
+    }
+    
+    @IBAction func start(sender: AnyObject){
+        
+        // starts a timer, update text to say stop
+        if !running{
+            startButton.setTitle("Stop", for: .normal)
+            startTimer()
+        }
+        else{
+            startButton.setTitle("Start", for: .normal)
+            stopTimer()
         }
         
     }
     
     @IBAction func stop(sender: AnyObject){
-        timer.invalidate()
-        if running{
-            running = false;
-        }
-        //timer == nil
+        // TODO remove this its corresponding view element
     }
     
     // TODO move this somewhere?
@@ -227,13 +237,14 @@ class SWViewController: UIViewController {
         print("application went into the background")
         bgTimeStamp = Date()
         if running{
-            stop(sender: self)
+            stopTimer()
             bgBool = true
         }
     }
     
     @objc func applicationDidBecomeActive(notification: NSNotification){
         print("application came into the foreground")
+        // when the app first launches it hits applicationDidBecomeActive
         if firstRun{
             firstRun = false
             return
@@ -249,7 +260,7 @@ class SWViewController: UIViewController {
         print(endTimeStamp)
         print("difference is \(components.hour ?? 0) hours, \(components.minute ?? 0) minutes, \(components.second ?? 0) seconds, and \(components.nanosecond ?? 0) nanoseconds")
         calculateEarnings(start: startTime, end: end)
-        start(sender: self)
+        startTimer()
         // TODO: update time to include 1/100th of second accuracy
         //var diff = endTimeStamp - bgTimeStamp
         
