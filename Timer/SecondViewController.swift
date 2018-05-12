@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate{
     
     
     @IBOutlet var tableview: UITableView!
+    var NSFRController: NSFetchedResultsController<TimeEntry>?
     var DarkisOn: Bool?
     let userDefaults = UserDefaults.standard
     let myarray = ["item1", "item2", "item3"]
@@ -24,6 +25,18 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         applyTheme()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
+        request.sortDescriptors = [NSSortDescriptor(key: "rate", ascending: false)]
+        NSFRController = (NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "section", cacheName: nil) as! NSFetchedResultsController<TimeEntry>)
+        NSFRController?.delegate = self
+        do {
+            try NSFRController?.performFetch()
+        } catch {
+            fatalError("Failed to fetch entities: \(error)")
+        }
+        //NSFRController?.sectionNameKeyPath
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate = self
         tableview.dataSource = self
@@ -33,14 +46,23 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidAppear(animated)
         // TODO: investigate if this code should be moved into viewDidLoad
         timeEntries.removeAll()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
-        let fetchedData = appDelegate.getData(request: request)
-        for data in fetchedData as! [NSManagedObject]{
-            timeEntries.append(data)
+        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
+//        request.sortDescriptors = [NSSortDescriptor(key: "rate", ascending: false)]
+//        NSFRController = (NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<NSManagedObject>)
+//        do {
+//            try NSFRController?.performFetch()
+//        } catch {
+//            fatalError("Failed to fetch entities: \(error)")
+//        }
+        //let fetchedData = appDelegate.getData(request: request)
+        //for data in fetchedData as! [NSManagedObject]{
+        //    timeEntries.append(data)
             //print(data.value(forKey: "value") as! Double)
-        }
-        tableview.reloadData()
+        //}
+        //tableview.reloadData()
         print("viewDidAppear")
     }
     
@@ -97,11 +119,25 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         //UITableViewCell.appearance().backgroundColor = UIColor.clear
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let frc = NSFRController{
+            print("non zero number of sections!!!: \(frc.sections!.count)")
+            return frc.sections!.count
+        }
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeEntries.count
+        //return timeEntries.count
+        guard let sections = self.NSFRController?.sections else {
+            fatalError("No sections in fetchedResultsController")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
         cell.textLabel?.text = "\(timeEntries[indexPath.row].value(forKey: "value") as! Double)"
         // TODO THIS IS A TERRIBLE HACK!!! DON"T DO THIS
@@ -117,6 +153,35 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         return cell
+        */
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
+        guard let myObject = self.NSFRController?.object(at: indexPath) else {
+            fatalError("Attempt to configure cell without a managed object")
+        }
+        //myObject
+        cell.textLabel?.text = "\(myObject.value(forKey: "value") as! Double)"
+        //NSFetchRequestResult
+        
+        // Configure the cell with data from the managed object.
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sectionInfo = NSFRController?.sections?[section] else {
+            return nil
+        }
+        return sectionInfo.name
+    }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return NSFRController?.sectionIndexTitles
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        guard let result = NSFRController?.section(forSectionIndexTitle: title, at: index) else {
+            fatalError("Unable to locate section for \(title) at index: \(index)")
+        }
+        return result
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -148,6 +213,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("this cell was tapped")
     }
+
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
@@ -157,8 +223,12 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "historyDetailsSegue"{
             print("this code got called!")
+            // TODO future steve... you got this
             if let selectedIndex = tableview.indexPathForSelectedRow?.row{
-                let selected = timeEntries[selectedIndex]
+                //let selected = timeEntries[selectedIndex]
+                guard let selected = self.NSFRController?.object(at: tableview.indexPathForSelectedRow!) else {
+                    fatalError("Attempt to configure cell without a managed object")
+                }
                 let date = selected.value(forKey: "date") as! Date
                 let elapsed = selected.value(forKey: "elapsed") as! Int
                 let rate = selected.value(forKey: "rate") as! Double

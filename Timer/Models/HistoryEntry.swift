@@ -26,4 +26,12 @@ class HistoryEntry{
         self.value = value
         self.comment = comment
     }
+    
+    @objc var section: String?{
+        print("HistoryEvent this shouldnt be called")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date);
+        //return "fuck"
+    }
 }

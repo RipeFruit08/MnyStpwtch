@@ -15,6 +15,8 @@
 		0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E5C720744B2000028C01 /* HistoryEntry.swift */; };
 		0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */; };
 		6E299C0A2069996D00C08298 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E299C092069996D00C08298 /* UIFontExtension.swift */; };
+		6E5E353C20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */; };
+		6E5E353D20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */; };
 		6E941B9D204CB809007DB31D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E941B9C204CB809007DB31D /* DoubleExtension.swift */; };
 		6EE12AE12040F444003C838A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE12AE02040F444003C838A /* RootViewController.swift */; };
 		6EE12B032040F73E003C838A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE12B022040F73E003C838A /* SecondViewController.swift */; };
@@ -36,6 +38,8 @@
 		0AC6E5C720744B2000028C01 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
 		0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWViewController.swift; sourceTree = "<group>"; };
 		6E299C092069996D00C08298 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeEntry+CoreDataClass.swift"; path = "Timer/Models/TimeEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeEntry+CoreDataProperties.swift"; path = "Timer/Models/TimeEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E941B9C204CB809007DB31D /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		6EE12AE02040F444003C838A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6EE12B022040F73E003C838A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		0A7290B01E272D8400B90134 = {
 			isa = PBXGroup;
 			children = (
+				6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */,
+				6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */,
 				6EE5DEAD208B3EFC00055580 /* Default-568h@2x.png */,
 				0A7290BB1E272D8400B90134 /* Timer */,
 				0A7290BA1E272D8400B90134 /* Products */,
@@ -189,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E941B9D204CB809007DB31D /* DoubleExtension.swift in Sources */,
+				6E5E353C20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift in Sources */,
 				6EE12B032040F73E003C838A /* SecondViewController.swift in Sources */,
 				6EE5DEAA207F082900055580 /* SettingsViewController.swift in Sources */,
 				0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */,
@@ -198,6 +205,7 @@
 				6EE5DEAC208B23FB00055580 /* UIColor+Extensions.swift in Sources */,
 				6EE12B092041148C003C838A /* HistoryModel.xcdatamodeld in Sources */,
 				0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */,
+				6E5E353D20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift in Sources */,
 				0A7290BD1E272D8400B90134 /* AppDelegate.swift in Sources */,
 				6EE12AE12040F444003C838A /* RootViewController.swift in Sources */,
 			);
