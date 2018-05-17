@@ -114,6 +114,11 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     private func applyLightMode(){
         self.view.backgroundColor = UIColor.white
         tableview.backgroundColor = UIColor.white
+        let cellAppearance: HistoryTableViewCell = HistoryTableViewCell.appearance()
+        //cellAppearance.backgroundColor = UIColor.clear
+        //cellAppearance.bgColor = UIColor.clear
+        //cellAppearance.setBackground(UIColor.black) // why doesn't this work?
+        cellAppearance.textLabel?.textColor = UIColor.white
         // why didnt these work?
         //UITableViewCell.appearance().textLabel?.textColor = UIColor.blue
         //UITableViewCell.appearance().backgroundColor = UIColor.clear
@@ -137,32 +142,14 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
-        cell.textLabel?.text = "\(timeEntries[indexPath.row].value(forKey: "value") as! Double)"
-        // TODO THIS IS A TERRIBLE HACK!!! DON"T DO THIS
-        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
-        if let mode = DarkisOn{
-            if mode{
-                cell.textLabel?.textColor = UIColor.white
-                cell.backgroundColor = UIColor.black
-            } else{
-                cell.textLabel?.textColor = UIColor.black
-                cell.backgroundColor = UIColor.clear
-            }
-        }
-        
-        return cell
-        */
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath) as! HistoryTableViewCell
         guard let myObject = self.NSFRController?.object(at: indexPath) else {
             fatalError("Attempt to configure cell without a managed object")
         }
-        //myObject
-        cell.textLabel?.text = "\(myObject.value(forKey: "value") as! Double)"
-        //NSFetchRequestResult
         
         // Configure the cell with data from the managed object.
+        cell.textLabel?.text = "\(myObject.value(forKey: "value") as! Double)"
+
         return cell
     }
     
@@ -184,6 +171,40 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         return result
     }
     
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableview.beginUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type{
+        case .insert:
+            tableview.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableview.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .move:
+            print("move occurred! handle this shit")
+        case .update:
+            print("update occurred! handle this shit")
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type{
+        case .insert:
+            tableview.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableview.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            tableview.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableview.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableview.endUpdates()
+    }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -196,12 +217,12 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
             alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {_ in
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
-                let toDelete = self.timeEntries[indexPath.row]
+                guard let toDelete = self.NSFRController?.object(at: indexPath) else {
+                    fatalError("DELETEING: Attempt to configure cell without a managed object")
+                }
                 do{
                     context.delete(toDelete);
                     try context.save()
-                    self.timeEntries.remove(at: indexPath.row)
-                    self.tableview.reloadData()
                 } catch {
                     print("Failed saving")
                 }
@@ -211,7 +232,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("this cell was tapped")
+        self.tableview.deselectRow(at: indexPath, animated: true)
     }
 
     
@@ -222,25 +243,19 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "historyDetailsSegue"{
-            print("this code got called!")
-            // TODO future steve... you got this
-            if let selectedIndex = tableview.indexPathForSelectedRow?.row{
-                //let selected = timeEntries[selectedIndex]
-                guard let selected = self.NSFRController?.object(at: tableview.indexPathForSelectedRow!) else {
-                    fatalError("Attempt to configure cell without a managed object")
-                }
-                let date = selected.value(forKey: "date") as! Date
-                let elapsed = selected.value(forKey: "elapsed") as! Int
-                let rate = selected.value(forKey: "rate") as! Double
-                let value = selected.value(forKey: "value") as! Double
-                let comment = selected.value(forKey: "comment") as! String?
-                let entry = HistoryEntry(date: date, elapsed: elapsed, rate: rate, value: value, comment: comment)
-                let navController = segue.destination as! HistoryDetailsViewController
-                navController.passedData = "fuck";
-                navController.historyEntry = entry;
+            print("historyDetailsSegue")
+            guard let selected = self.NSFRController?.object(at: tableview.indexPathForSelectedRow!) else {
+                fatalError("Attempt to configure cell without a managed object")
             }
-            
-
+            let date = selected.value(forKey: "date") as! Date
+            let elapsed = selected.value(forKey: "elapsed") as! Int
+            let rate = selected.value(forKey: "rate") as! Double
+            let value = selected.value(forKey: "value") as! Double
+            let comment = selected.value(forKey: "comment") as! String?
+            let entry = HistoryEntry(date: date, elapsed: elapsed, rate: rate, value: value, comment: comment)
+            let navController = segue.destination as! HistoryDetailsViewController
+            navController.passedData = "fuck";
+            navController.historyEntry = entry;
         }
     }
     

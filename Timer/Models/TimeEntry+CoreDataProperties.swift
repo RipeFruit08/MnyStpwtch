@@ -22,10 +22,13 @@ extension TimeEntry {
     @NSManaged public var elapsed: Int64
     @NSManaged public var rate: Double
     @NSManaged public var value: Double
-    //@NSManaged public var section: String?
     
+    /**
+     * Transient CoreData attribute
+     *
+     * used to sort table view section by MM/dd/yyyy order
+     */
     @objc var section: String? {
-        print("i love kanye")
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         return formatter.string(from: date! as Date)
