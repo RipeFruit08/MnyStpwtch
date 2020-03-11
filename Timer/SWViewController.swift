@@ -20,7 +20,6 @@ class SWViewController: UIViewController {
     var earnings = 0.0
     var timeElapsed: TimeInterval = NSDate.timeIntervalSinceReferenceDate
     var firstRun = true
-    var DarkisOn: Bool?
     let userDefaults = UserDefaults.standard
     static let zero = "00:00:00:00"
     
@@ -34,21 +33,10 @@ class SWViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     
-    @objc private func darkModeEnabled(_ notification: Notification) {
-        // Write your dark mode code here
-        print("darkModeEnabled code")
-        applyDarkMode()
-        
-        //stopButton.setTitle("yo", for: .normal)
-    }
     
-    @objc private func darkModeDisabled(_ notification: Notification) {
-        // Write your non-dark mode code here
-        print("darkModeDisabled code")
-        //stopButton.setTitle("oy", for: .normal)
-        applyLightMode()
-    }
-    
+    /**
+     Notification responding to changing user rate
+     */
     @objc private func userRateChanged(_ notification: Notification){
         // grabs updated userDefault values and updates displayed rate
         let newRate: Double = userDefaults.double(forKey: "UserRate")
@@ -56,44 +44,6 @@ class SWViewController: UIViewController {
         self.rateLabel.text = "Current Rate: \(newRate)"
     }
     
-    // am i doing this right? ¯\_(ツ)_/¯
-    private func applyTheme(){
-        // TODO what if no key is set? it will return false
-        // that would mean default implementation of the app would be to have a light theme
-        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
-        if let mode = DarkisOn{
-            if mode{
-                applyDarkMode()
-            }
-            else{
-                applyLightMode()
-            }
-        }
-        rate = userDefaults.double(forKey: "UserRate")
-        rateLabel.text = "Current Rate: \(rate)"
-    }
-    
-    private func applyDarkMode(){
-        self.view.backgroundColor = UIColor.black
-        colorUILabels(color: UIColor.white)
-    }
-    
-    private func applyLightMode(){
-        self.view.backgroundColor = UIColor.white
-        colorUILabels(color: UIColor.black)
-        //darkThemeToggle.setOn(false, animated: true)
-    }
-    
-    // TODO can this be brought out to a different file so all VCs can call this method?
-    private func colorUILabels(color: UIColor){
-        //Get all UIViews in self.view.subViews
-        //TODO this is magic ._. read up on compactMap
-        let labels = self.view.subviews.compactMap { $0 as? UILabel }
-        
-        for label in labels {
-            label.textColor = color
-        }
-    }
     
     @IBAction func save(_ sender: Any) {
         if (!running){
@@ -214,20 +164,16 @@ class SWViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userRateChanged(_:)), name: .userRateChanged, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         
-        applyTheme()
         
         let app = UIApplication.shared
         displayTimeLabel.font = displayTimeLabel.font.monospacedDigitFont;
         
         // Register for the applicationWillResignActive anywhere in your app
-        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationWillResignActive(notification:)), name: NSNotification.Name.UIApplicationWillResignActive, object: app)
+        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationWillResignActive(notification:)), name: UIApplication.willResignActiveNotification, object: app)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationDidBecomeActive(notification:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: app)
+        NotificationCenter.default.addObserver(self, selector: #selector(SWViewController.applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: app)
         
 
         // Do any additional setup after loading the view.
@@ -272,8 +218,6 @@ class SWViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
         NotificationCenter.default.removeObserver(self, name: .userRateChanged, object: nil)
     }
 

@@ -14,17 +14,12 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var tableview: UITableView!
     var NSFRController: NSFetchedResultsController<TimeEntry>?
-    var DarkisOn: Bool?
     let userDefaults = UserDefaults.standard
     let myarray = ["item1", "item2", "item3"]
     var timeEntries = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Add Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
-        applyTheme()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntry")
@@ -74,54 +69,6 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @objc private func darkModeEnabled(_ notification: Notification) {
-        // Write your dark mode code here
-        print("darkModeEnabled code")
-        applyDarkMode()
-    }
-    
-    @objc private func darkModeDisabled(_ notification: Notification) {
-        // Write your non-dark mode code here
-        print("darkModeDisabled code")
-        applyLightMode()
-    }
-    
-    // am i doing this right? ¯\_(ツ)_/¯
-    private func applyTheme(){
-        // TODO what if no key is set? it will return false
-        // that would mean default implementation of the app would be to have a light theme
-        DarkisOn = userDefaults.bool(forKey: "DarkDefault")
-        if let mode = DarkisOn{
-            if mode{
-                applyDarkMode()
-            }
-            else{
-                applyLightMode()
-            }
-        }
-    }
-    
-    private func applyDarkMode(){
-        self.view.backgroundColor = UIColor.black
-        tableview.backgroundColor = UIColor.black
-        // https://stackoverflow.com/questions/25585543/how-to-change-the-text-color-of-all-text-in-uiview
-        // updating color of all labels in view
-        // TODO make function to change all UILabels to a color
-    }
-    
-    private func applyLightMode(){
-        self.view.backgroundColor = UIColor.white
-        tableview.backgroundColor = UIColor.white
-        let cellAppearance: HistoryTableViewCell = HistoryTableViewCell.appearance()
-        //cellAppearance.backgroundColor = UIColor.clear
-        //cellAppearance.bgColor = UIColor.clear
-        //cellAppearance.setBackground(UIColor.black) // why doesn't this work?
-        cellAppearance.textLabel?.textColor = UIColor.white
-        // why didnt these work?
-        //UITableViewCell.appearance().textLabel?.textColor = UIColor.blue
-        //UITableViewCell.appearance().backgroundColor = UIColor.clear
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -209,8 +156,8 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if ( editingStyle == UITableViewCellEditingStyle.delete){
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if ( editingStyle == UITableViewCell.EditingStyle.delete){
             print("put code for delete action here")
             let alert = UIAlertController(title: "Delete", message: "Do you want to delete this entry?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -234,11 +181,11 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableview.deselectRow(at: indexPath, animated: true)
     }
+    
+    
 
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

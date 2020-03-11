@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         /* requesting notification center permissions
          TODO: play around with notifications
@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error as Any)
         }
         */
-        
-        applyTheme()
         return true
     }
 
@@ -109,35 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("failed on getData")
         }
         return []
-    }
-
-    // TODO: document
-    // current applies to nav bar, status bar, tab bar
-    func applyTheme () {
-        let navigationBarAppearace = UINavigationBar.appearance()
-        let tabBarAppearance = UITabBar.appearance()
-        let userDefaults = UserDefaults.standard
-        let darkThemeOn = userDefaults.bool(forKey: "DarkDefault")
-        if darkThemeOn{
-            navigationBarAppearace.tintColor = UIColor.white
-            navigationBarAppearace.isTranslucent = false
-            navigationBarAppearace.barTintColor = UIColor.black
-            navigationBarAppearace.shadowImage = UIColor.white.asImage(width: 0.25, height: 0.25)
-            navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            UIApplication.shared.statusBarStyle = .lightContent
-            tabBarAppearance.barTintColor = UIColor.black
-            UITextField.appearance().keyboardAppearance = .dark
-            
-        } else{
-            navigationBarAppearace.tintColor = UIColor.black
-            navigationBarAppearace.isTranslucent = false
-            navigationBarAppearace.barTintColor = UIColor.white
-            navigationBarAppearace.shadowImage = UIColor.black.asImage(width: 0.25, height: 0.25)
-            navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            UIApplication.shared.statusBarStyle = .default
-            tabBarAppearance.barTintColor = UIColor.white
-            UITextField.appearance().keyboardAppearance = .light
-        }
     }
     
 
