@@ -131,7 +131,9 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         case .move:
             print("move occurred! handle this shit")
         case .update:
-            print("update occurred! handle this shit")
+            print("A history section was updated.")
+        @unknown default:
+            tableview.reloadData()
         }
     }
     
@@ -145,6 +147,8 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
             tableview.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             tableview.moveRow(at: indexPath!, to: newIndexPath!)
+        @unknown default:
+            tableview.reloadData()
         }
     }
     
