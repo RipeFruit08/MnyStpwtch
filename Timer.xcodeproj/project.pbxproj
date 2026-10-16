@@ -3,59 +3,63 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A7290BD1E272D8400B90134 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7290BC1E272D8400B90134 /* AppDelegate.swift */; };
-		0A7290C21E272D8400B90134 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C01E272D8400B90134 /* Main.storyboard */; };
 		0A7290C41E272D8400B90134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C31E272D8400B90134 /* Assets.xcassets */; };
 		0A7290C71E272D8400B90134 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7290C51E272D8400B90134 /* LaunchScreen.storyboard */; };
-		0AC6E5C52072F58D00028C01 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */; };
-		0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E5C720744B2000028C01 /* HistoryEntry.swift */; };
-		0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */; };
-		6E299C0A2069996D00C08298 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E299C092069996D00C08298 /* UIFontExtension.swift */; };
 		6E5E353C20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */; };
 		6E5E353D20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */; };
-		6E5E354120AD03D20032B5E4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E354020AD03D20032B5E4 /* HistoryTableViewCell.swift */; };
-		6E941B9D204CB809007DB31D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E941B9C204CB809007DB31D /* DoubleExtension.swift */; };
-		6EE12AE12040F444003C838A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE12AE02040F444003C838A /* RootViewController.swift */; };
-		6EE12B032040F73E003C838A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE12B022040F73E003C838A /* SecondViewController.swift */; };
 		6EE12B092041148C003C838A /* HistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EE12B072041148C003C838A /* HistoryModel.xcdatamodeld */; };
-		6EE5DEA8207EAD2E00055580 /* NotificationsName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5DEA7207EAD2E00055580 /* NotificationsName+Extensions.swift */; };
-		6EE5DEAA207F082900055580 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5DEA9207F082900055580 /* SettingsViewController.swift */; };
-		6EE5DEAC208B23FB00055580 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5DEAB208B23FB00055580 /* UIColor+Extensions.swift */; };
-		6EE5DEAE208B3EFC00055580 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE5DEAD208B3EFC00055580 /* Default-568h@2x.png */; };
 		757A4EDC30818A9500ADCABE /* MoneyStopwatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EDB30818A9500ADCABE /* MoneyStopwatchApp.swift */; };
+		757A4EDE308196CE00ADCABE /* SessionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EDD308196CE00ADCABE /* SessionTimer.swift */; };
+		757A4EE0308196CE00ADCABE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EDF308196CE00ADCABE /* PersistenceController.swift */; };
+		757A4EE2308196CE00ADCABE /* SessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EE1308196CE00ADCABE /* SessionCategory.swift */; };
+		757A4EE4308196CE00ADCABE /* TimerDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EE3308196CE00ADCABE /* TimerDomain.swift */; };
+		757A4EE63081970B00ADCABE /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EE53081970B00ADCABE /* StopwatchView.swift */; };
+		757A4EE83081972600ADCABE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EE73081972600ADCABE /* HistoryView.swift */; };
+		757A4EEA3081972600ADCABE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EE93081972600ADCABE /* SettingsView.swift */; };
+		757A4EEC3081975500ADCABE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 757A4EEB3081975500ADCABE /* Localizable.xcstrings */; };
+		757A4EF930819F6900ADCABE /* MoneyStopwatchArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EF830819F6900ADCABE /* MoneyStopwatchArchive.swift */; };
+		757A4EFB30819F6A00ADCABE /* TransferDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A4EFA30819F6A00ADCABE /* TransferDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A7290B91E272D8400B90134 /* Money Stopwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Stopwatch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A7290BC1E272D8400B90134 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A7290C11E272D8400B90134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A7290C31E272D8400B90134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A7290C61E272D8400B90134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A7290C81E272D8400B90134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
-		0AC6E5C720744B2000028C01 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
-		0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWViewController.swift; sourceTree = "<group>"; };
-		6E299C092069996D00C08298 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeEntry+CoreDataClass.swift"; path = "Timer/Models/TimeEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeEntry+CoreDataProperties.swift"; path = "Timer/Models/TimeEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		6E5E354020AD03D20032B5E4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		6E941B9C204CB809007DB31D /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
-		6EE12AE02040F444003C838A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		6EE12B022040F73E003C838A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		6EE12B082041148C003C838A /* HistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryModel.xcdatamodel; sourceTree = "<group>"; };
-		6EE5DEA7207EAD2E00055580 /* NotificationsName+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationsName+Extensions.swift"; sourceTree = "<group>"; };
-		6EE5DEA9207F082900055580 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		6EE5DEAB208B23FB00055580 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		6EE5DEAD208B3EFC00055580 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		757A4EDB30818A9500ADCABE /* MoneyStopwatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyStopwatchApp.swift; sourceTree = "<group>"; };
+		757A4EDD308196CE00ADCABE /* SessionTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTimer.swift; sourceTree = "<group>"; };
+		757A4EDF308196CE00ADCABE /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		757A4EE1308196CE00ADCABE /* SessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCategory.swift; sourceTree = "<group>"; };
+		757A4EE3308196CE00ADCABE /* TimerDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDomain.swift; sourceTree = "<group>"; };
+		757A4EE53081970B00ADCABE /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
+		757A4EE73081972600ADCABE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		757A4EE93081972600ADCABE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		757A4EEB3081975500ADCABE /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		757A4EF13081975B00ADCABE /* TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		757A4EF830819F6900ADCABE /* MoneyStopwatchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyStopwatchArchive.swift; sourceTree = "<group>"; };
+		757A4EFA30819F6A00ADCABE /* TransferDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		757A4EF23081975B00ADCABE /* TimerTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TimerTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0A7290B61E272D8400B90134 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		757A4EEE3081975B00ADCABE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -70,8 +74,8 @@
 			children = (
 				6E5E353A20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift */,
 				6E5E353B20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift */,
-				6EE5DEAD208B3EFC00055580 /* Default-568h@2x.png */,
 				0A7290BB1E272D8400B90134 /* Timer */,
+				757A4EF23081975B00ADCABE /* TimerTests */,
 				0A7290BA1E272D8400B90134 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7290B91E272D8400B90134 /* Money Stopwatch.app */,
+				757A4EF13081975B00ADCABE /* TimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,19 +94,17 @@
 			children = (
 				0AC6E5C620744B0B00028C01 /* Models */,
 				6E941B97204CACC0007DB31D /* Extensions */,
-				0A7290BC1E272D8400B90134 /* AppDelegate.swift */,
-				0A7290C01E272D8400B90134 /* Main.storyboard */,
 				0A7290C31E272D8400B90134 /* Assets.xcassets */,
 				0A7290C51E272D8400B90134 /* LaunchScreen.storyboard */,
 				0A7290C81E272D8400B90134 /* Info.plist */,
-				0AF0AAC51E36DD2B00F72CBE /* SWViewController.swift */,
-				6EE12AE02040F444003C838A /* RootViewController.swift */,
-				6E5E354020AD03D20032B5E4 /* HistoryTableViewCell.swift */,
-				6EE12B022040F73E003C838A /* SecondViewController.swift */,
-				0AC6E5C42072F58D00028C01 /* HistoryDetailsViewController.swift */,
 				6EE12B072041148C003C838A /* HistoryModel.xcdatamodeld */,
-				6EE5DEA9207F082900055580 /* SettingsViewController.swift */,
 				757A4EDB30818A9500ADCABE /* MoneyStopwatchApp.swift */,
+				757A4EDF308196CE00ADCABE /* PersistenceController.swift */,
+				757A4EE53081970B00ADCABE /* StopwatchView.swift */,
+				757A4EE73081972600ADCABE /* HistoryView.swift */,
+				757A4EE93081972600ADCABE /* SettingsView.swift */,
+				757A4EEB3081975500ADCABE /* Localizable.xcstrings */,
+				757A4EFA30819F6A00ADCABE /* TransferDataView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -109,7 +112,10 @@
 		0AC6E5C620744B0B00028C01 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0AC6E5C720744B2000028C01 /* HistoryEntry.swift */,
+				757A4EDD308196CE00ADCABE /* SessionTimer.swift */,
+				757A4EE1308196CE00ADCABE /* SessionCategory.swift */,
+				757A4EE3308196CE00ADCABE /* TimerDomain.swift */,
+				757A4EF830819F6900ADCABE /* MoneyStopwatchArchive.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,10 +123,6 @@
 		6E941B97204CACC0007DB31D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6E941B9C204CB809007DB31D /* DoubleExtension.swift */,
-				6E299C092069996D00C08298 /* UIFontExtension.swift */,
-				6EE5DEA7207EAD2E00055580 /* NotificationsName+Extensions.swift */,
-				6EE5DEAB208B23FB00055580 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,13 +147,35 @@
 			productReference = 0A7290B91E272D8400B90134 /* Money Stopwatch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		757A4EF03081975B00ADCABE /* TimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 757A4EF53081975B00ADCABE /* Build configuration list for PBXNativeTarget "TimerTests" */;
+			buildPhases = (
+				757A4EED3081975B00ADCABE /* Sources */,
+				757A4EEE3081975B00ADCABE /* Frameworks */,
+				757A4EEF3081975B00ADCABE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				757A4EF23081975B00ADCABE /* TimerTests */,
+			);
+			name = TimerTests;
+			packageProductDependencies = (
+			);
+			productName = TimerTests;
+			productReference = 757A4EF13081975B00ADCABE /* TimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0A7290B11E272D8400B90134 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Stephen Kim";
 				TargetAttributes = {
@@ -160,6 +184,9 @@
 						DevelopmentTeam = T787FRXMYN;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
+					};
+					757A4EF03081975B00ADCABE = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -177,6 +204,7 @@
 			projectRoot = "";
 			targets = (
 				0A7290B81E272D8400B90134 /* Timer */,
+				757A4EF03081975B00ADCABE /* TimerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -187,9 +215,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7290C71E272D8400B90134 /* LaunchScreen.storyboard in Resources */,
-				6EE5DEAE208B3EFC00055580 /* Default-568h@2x.png in Resources */,
 				0A7290C41E272D8400B90134 /* Assets.xcassets in Resources */,
-				0A7290C21E272D8400B90134 /* Main.storyboard in Resources */,
+				757A4EEC3081975500ADCABE /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		757A4EEF3081975B00ADCABE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,36 +234,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E941B9D204CB809007DB31D /* DoubleExtension.swift in Sources */,
+				757A4EEA3081972600ADCABE /* SettingsView.swift in Sources */,
 				6E5E353C20A6C8B20032B5E4 /* TimeEntry+CoreDataClass.swift in Sources */,
-				6EE12B032040F73E003C838A /* SecondViewController.swift in Sources */,
-				6EE5DEAA207F082900055580 /* SettingsViewController.swift in Sources */,
-				0AF0AAC61E36DD2B00F72CBE /* SWViewController.swift in Sources */,
-				6EE5DEA8207EAD2E00055580 /* NotificationsName+Extensions.swift in Sources */,
-				6E299C0A2069996D00C08298 /* UIFontExtension.swift in Sources */,
-				0AC6E5C52072F58D00028C01 /* HistoryDetailsViewController.swift in Sources */,
+				757A4EE83081972600ADCABE /* HistoryView.swift in Sources */,
+				757A4EE63081970B00ADCABE /* StopwatchView.swift in Sources */,
 				757A4EDC30818A9500ADCABE /* MoneyStopwatchApp.swift in Sources */,
-				6EE5DEAC208B23FB00055580 /* UIColor+Extensions.swift in Sources */,
-				6E5E354120AD03D20032B5E4 /* HistoryTableViewCell.swift in Sources */,
+				757A4EE4308196CE00ADCABE /* TimerDomain.swift in Sources */,
+				757A4EE0308196CE00ADCABE /* PersistenceController.swift in Sources */,
+				757A4EDE308196CE00ADCABE /* SessionTimer.swift in Sources */,
 				6EE12B092041148C003C838A /* HistoryModel.xcdatamodeld in Sources */,
-				0AC6E5C820744B2000028C01 /* HistoryEntry.swift in Sources */,
+				757A4EFB30819F6A00ADCABE /* TransferDataView.swift in Sources */,
+				757A4EF930819F6900ADCABE /* MoneyStopwatchArchive.swift in Sources */,
 				6E5E353D20A6C8B20032B5E4 /* TimeEntry+CoreDataProperties.swift in Sources */,
-				0A7290BD1E272D8400B90134 /* AppDelegate.swift in Sources */,
-				6EE12AE12040F444003C838A /* RootViewController.swift in Sources */,
+				757A4EE2308196CE00ADCABE /* SessionCategory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		757A4EED3081975B00ADCABE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0A7290C01E272D8400B90134 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0A7290C11E272D8400B90134 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0A7290C51E272D8400B90134 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -343,7 +373,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -357,7 +388,10 @@
 				DEVELOPMENT_TEAM = T787FRXMYN;
 				INFOPLIST_FILE = Timer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = anything.Timer;
 				PRODUCT_NAME = "Money Stopwatch";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -377,7 +411,10 @@
 				DEVELOPMENT_TEAM = T787FRXMYN;
 				INFOPLIST_FILE = Timer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = anything.Timer;
 				PRODUCT_NAME = "Money Stopwatch";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -385,6 +422,82 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		757A4EF63081975B00ADCABE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Money Stopwatch.debug.dylib";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T787FRXMYN;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_INCLUDE_PATHS = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Modules";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Money Stopwatch";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		757A4EF73081975B00ADCABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Money Stopwatch.debug.dylib";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T787FRXMYN;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_INCLUDE_PATHS = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Modules";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Money Stopwatch.app/Money Stopwatch";
+				XROS_DEPLOYMENT_TARGET = 27.0;
 			};
 			name = Release;
 		};
@@ -405,6 +518,15 @@
 			buildConfigurations = (
 				0A7290CC1E272D8400B90134 /* Debug */,
 				0A7290CD1E272D8400B90134 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		757A4EF53081975B00ADCABE /* Build configuration list for PBXNativeTarget "TimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				757A4EF63081975B00ADCABE /* Debug */,
+				757A4EF73081975B00ADCABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
