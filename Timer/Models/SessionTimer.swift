@@ -11,6 +11,7 @@ final class SessionTimer {
     }
 
     private let defaults: UserDefaults
+    private let liveActivityController = SessionLiveActivityController()
     private(set) var snapshot: TimerSnapshot
 
     init(defaults: UserDefaults = .standard) {
@@ -23,6 +24,7 @@ final class SessionTimer {
             startedAt: startedAt,
             hourlyRate: hourlyRate
         )
+        synchronizeLiveActivity()
     }
 
     var isRunning: Bool {
@@ -44,16 +46,19 @@ final class SessionTimer {
             snapshot.start(hourlyRate: hourlyRate, at: date)
         }
         persist()
+        synchronizeLiveActivity()
     }
 
     func pause(at date: Date) {
         snapshot.pause(at: date)
         persist()
+        synchronizeLiveActivity()
     }
 
     func reset() {
         snapshot.reset()
         persist()
+        synchronizeLiveActivity()
     }
 
     private func persist() {
@@ -62,4 +67,10 @@ final class SessionTimer {
         defaults.set(snapshot.hourlyRate, forKey: Key.hourlyRate)
     }
 
+    private func synchronizeLiveActivity() {
+        liveActivityController.synchronize(
+            snapshot: snapshot,
+            currencyCode: Locale.current.currency?.identifier ?? "USD"
+        )
+    }
 }
